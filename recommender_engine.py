@@ -31,7 +31,7 @@ def get_reco_songs(seed_track_data, rec_pool_df=rec_pool_df):
 def page1():
     st.image('spotify_logo.png', width = 600)
     st.title('Spotify Recommender Engine for SB19 Songs')
-    chosen_song = st.text_input('Song to get recommendations from:')
+    chosen_song = st.text_input('Input SB19 Song to get recommendations from:')
     try:
         seed_track_data = seed_pool_df[seed_pool_df['track_name']==chosen_song].iloc[0]
         st.dataframe(data=get_reco_songs(seed_track_data), width = 700)
@@ -42,7 +42,7 @@ def page1():
 def page2():
     st.image('spotify_logo.png', width = 600)
     st.title('Spotify Recommender Engine for Top 200 Songs')
-    chosen_song = st.text_input('Song to get recommendations from:')
+    chosen_song = st.text_input('Input Top 200 song to get SB19 song recommendations from:')
     seed_pool_df = pd.read_csv("top_200_tracks.csv")
     rec_pool_df = pd.read_csv("spotify_seed_tracks.csv")
     try:
@@ -66,10 +66,10 @@ def page3():
     
 
 def main():
-    page = st.sidebar.radio("Choose a page:", ("Recommendation Engine - SB19 to Top 200", "Recommendation Engine - Top200 to SB19", "Recommendation Engine - Audio Features to SB19"))
-    if page == "Recommendation Engine - SB19 to Top 200":
+    page = st.sidebar.radio("Choose a page:", ("Recommendation Engine - SB19 to Top 200 Songs", "Recommendation Engine - Top 200 Songs to SB19", "Recommendation Engine - Audio Features to SB19"))
+    if page == "Recommendation Engine - SB19 to Top 200 Songs":
         page1()
-    elif page == "Recommendation Engine - Top200 to SB19":
+    elif page == "Recommendation Engine - Top 200 Songs to SB19":
         page2()
     else:
         page3()
